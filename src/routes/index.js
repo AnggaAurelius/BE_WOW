@@ -7,7 +7,8 @@ const {getUsers,
 
 const {getBooks,
     getBooksById,
-    addBook
+    addBook,
+    editBook
 } = require("../controllers/books");
 
 router.get("/users", getUsers);
@@ -16,5 +17,6 @@ router.delete("/user/:id", deleteUser);
 router.get("/books", getBooks);
 router.get("/book/:id", getBooksById);
 router.post("/book", addBook);
+router.patch("/book/:id", editBook);
 
 module.exports = router; 

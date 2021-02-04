@@ -67,3 +67,45 @@ exports.addBook = async (req, res) => {
     });
   }
 };
+
+exports.editBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const book = await Book.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!book) {
+      return res.send({
+        message: `Book with id ${id} Not Existed`,
+      });
+    }
+
+    await Book.update(req.body, {
+      where: {
+        id,
+      },
+    });
+
+    const bookUpdated = await Book.findOne({
+      where: {
+        id,
+      },
+    });
+
+    res.send({
+      status: "success",
+      data: {
+        book: bookUpdated,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
