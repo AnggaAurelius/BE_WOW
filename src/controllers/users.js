@@ -1,26 +1,21 @@
-let users = [
-    {
-        "id": 1,
-        "fullName": "spiderman",
-        "email": "spiderman@gmail.com"
-      },
-      {
-        "id": 2,
-        "fullName": "Haris"
-      },
-      {
-        "id": 3,
-        "fullName": "surti",
-        "email": "surti@gmail.com"
-      }
-];
+const { User } = require("../../models");
 
-exports.getUsers = (req, res) => {
-    res.send({
-        status: "succcess",
-        message: "Response Success",
-        data: {
-            users,
-        },
-    });
+exports.getUsers = async (req, res) => {
+    try{
+        const users = await User.findAll();
+        
+        res.send({
+            status: "success",
+            message: "Post Succesfully Retrives",
+            data: {
+                users,
+            },
+        });
+    } catch (err){
+        console.log(err);
+        res.status(500).send({
+            message: "Server Error",
+        })
+
+    }
 };
