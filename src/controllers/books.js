@@ -109,3 +109,39 @@ exports.editBook = async (req, res) => {
     });
   }
 };
+
+exports.deletebook = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const book = await Book.findOne({
+      where: {
+        id,
+      },
+    });
+
+    if (!book) {
+      return res.send({
+        message: `Book with id ${id} Not Existed`,
+      });
+    }
+
+    await Book.destroy({
+      where: {
+        id,
+      },
+    });
+
+    res.send({
+       status: "success",
+            data: {
+                id,
+            },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};

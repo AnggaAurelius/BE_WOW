@@ -8,7 +8,8 @@ const {getUsers,
 const {getBooks,
     getBooksById,
     addBook,
-    editBook
+    editBook,
+    deletebook
 } = require("../controllers/books");
 
 router.get("/users", getUsers);
@@ -18,5 +19,6 @@ router.get("/books", getBooks);
 router.get("/book/:id", getBooksById);
 router.post("/book", addBook);
 router.patch("/book/:id", editBook);
+router.delete("/book/:id", deletebook);
 
 module.exports = router; 
