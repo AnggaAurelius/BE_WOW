@@ -1,5 +1,7 @@
 const { User } = require("../../models");
 
+//
+// get user
 exports.getUsers = async (req, res) => {
     try{
         const users = await User.findAll();
@@ -20,6 +22,8 @@ exports.getUsers = async (req, res) => {
     }
 };
 
+//
+// delete user
 exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
