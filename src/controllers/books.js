@@ -49,3 +49,21 @@ exports.getBooksById = async (req, res) => {
     });
   }
 };
+
+exports.addBook = async (req, res) => {
+  try {
+    const book = await Book.create(req.body);
+
+    res.send({
+      status: "success",
+      data: {
+        book,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
