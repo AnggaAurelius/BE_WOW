@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { 
-    register
+    register, login
 } = require("../controllers/auth");
 
 const {getUsers, 
@@ -27,5 +27,9 @@ router.delete("/book/:id", deletebook);
 
 // auth
 router.post("/register", register);
+router.post("/login", login);
+
+
+
 
 module.exports = router; 

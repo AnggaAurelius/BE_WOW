@@ -48,7 +48,7 @@ exports.register = async (req, res) => {
 
         res.send({
             status: "succes",
-            // message: "Register Succces",
+            message: "Register Succces",
             data: {
                 user: {
                     email,
