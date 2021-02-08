@@ -4,11 +4,14 @@ const { User } = require("../../models");
 // get user
 exports.getUsers = async (req, res) => {
     try{
-        const users = await User.findAll();
+        const users = await User.findAll({
+           attributes: {
+                exclude: ["createdAt","updatedAt","password"],
+                }
+        });
         
         res.send({
             status: "success",
-            message: "Post Succesfully Retrives",
             data: {
                 users,
             },

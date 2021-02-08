@@ -17,6 +17,10 @@ const {getBooks,
     deletebook
 } = require("../controllers/books");
 
+const { 
+    getTransactions, editTransaction
+} = require("../controllers/transactions");
+
 router.get("/users", getUsers);
 router.delete("/user/:id", deleteUser);
 
@@ -30,7 +34,9 @@ router.delete("/book/:id", authenticated, deletebook);
 router.post("/register", register);
 router.post("/login", login);
 
-
+// transaction
+router.get("/transactions", getTransactions);
+router.get("/transaction/:id", editTransaction);
 
 
 module.exports = router; 
