@@ -62,7 +62,7 @@ exports.getTransactionsById = async (req, res) => {
             id: transaction.id,
             user: transaction.users,
             transferProof: transaction.transferProof,
-            remainingActive: transaction.remainingactive,
+            remainingActive: transaction.remainingActive,
             userStatus: transaction.userStatus,
             paymentStatus: transaction.paymentStatus,
         }

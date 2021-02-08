@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const { authenticated } = require("../middlewares/auth");
+const { uploadFile } = require("../middlewares/upload");
+
+const { 
+    addTransaction
+} = require("../controllers/addTransaction");
 
 const { 
     register, login
@@ -38,6 +43,6 @@ router.post("/login", login);
 router.get("/transactions", getTransactions);
 router.get("/transaction/:id", getTransactionsById);
 router.patch("/transaction/:id", authenticated, editTransaction);
-
+router.post("/addTransaction", uploadFile("imageFile", "videoFile"), authenticated, addTransaction);
 
 module.exports = router; 
