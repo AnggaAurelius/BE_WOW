@@ -29,6 +29,53 @@ exports.getTransactions = async (req, res) => {
     }
 };
 
+exports.getTransactionsById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const transaction = await Transaction.findOne({
+      where: {
+        id,
+      },
+      include: {
+        as: "users",
+        model: User,
+        attributes: {
+            exclude:[ "email","password","createdAt","updatedAt"],
+            }
+        },
+        attributes: {
+            exclude:[ "userId","createdAt","updatedAt"],
+            },
+    });
+
+    if (!transaction) {
+      return res.send({
+        status: "success",
+        message: `Transaction with id ${id} Not Existed`,
+      });
+    }
+
+    res.send({
+      data: {
+        transaction:{
+            id: transaction.id,
+            user: transaction.users,
+            transferProof: transaction.transferProof,
+            remainingActive: transaction.remainingactive,
+            userStatus: transaction.userStatus,
+            paymentStatus: transaction.paymentStatus,
+        }
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
+
 exports.editTransaction = async (req, res) => {
   try {
     const { id } = req.params;

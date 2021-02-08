@@ -18,7 +18,7 @@ const {getBooks,
 } = require("../controllers/books");
 
 const { 
-    getTransactions, editTransaction
+    getTransactions, editTransaction, getTransactionsById
 } = require("../controllers/transactions");
 
 router.get("/users", getUsers);
@@ -36,7 +36,8 @@ router.post("/login", login);
 
 // transaction
 router.get("/transactions", getTransactions);
-router.get("/transaction/:id", editTransaction);
+router.get("/transaction/:id", getTransactionsById);
+router.patch("/transaction/:id", authenticated, editTransaction);
 
 
 module.exports = router; 
