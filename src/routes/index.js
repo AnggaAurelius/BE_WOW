@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { authenticated } = require("../middlewares/auth");
+const { isAdmin } = require("../middlewares/checkRole");
 const { uploadFile } = require("../middlewares/upload");
 
 const { 
@@ -31,9 +32,9 @@ router.delete("/user/:id", deleteUser);
 
 router.get("/books", getBooks);
 router.get("/book/:id", getBooksById);
-router.post("/book", authenticated, addBook);
-router.patch("/book/:id", authenticated, editBook);
-router.delete("/book/:id", authenticated, deletebook);
+router.post("/book", authenticated, isAdmin, addBook);
+router.patch("/book/:id", authenticated, isAdmin, editBook);
+router.delete("/book/:id", authenticated, isAdmin, deletebook);
 
 // auth
 router.post("/register", register);
@@ -42,7 +43,7 @@ router.post("/login", login);
 // transaction
 router.get("/transactions", getTransactions);
 router.get("/transaction/:id", getTransactionsById);
-router.patch("/transaction/:id", authenticated, editTransaction);
+router.patch("/transaction/:id", authenticated, isAdmin, editTransaction);
 router.post("/addTransaction", uploadFile("imageFile", "videoFile"), authenticated, addTransaction);
 
 module.exports = router; 

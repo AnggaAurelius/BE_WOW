@@ -7,7 +7,7 @@ exports.getTransactions = async (req, res) => {
                 as: "users",
                 model: User,
                 attributes: {
-                    exclude:[ "email","password","createdAt","updatedAt"],
+                    exclude:[ "email","password","createdAt","updatedAt","role"],
                 }
             },
             attributes: {
@@ -41,7 +41,7 @@ exports.getTransactionsById = async (req, res) => {
         as: "users",
         model: User,
         attributes: {
-            exclude:[ "email","password","createdAt","updatedAt"],
+            exclude:[ "email","password","createdAt","updatedAt","role"],
             }
         },
         attributes: {
@@ -106,7 +106,7 @@ exports.editTransaction = async (req, res) => {
         as: "users",
         model: User,
         attributes: {
-            exclude:[ "email","password","createdAt","updatedAt"],
+            exclude:[ "email","password","createdAt","updatedAt","role"],
             }
         },
         attributes: {

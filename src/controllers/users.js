@@ -39,7 +39,7 @@ exports.deleteUser = async (req, res) => {
 
     if (!user) {
     res.send({
-        message: `Post with id ${id} Not Existed`,
+        message: `User with id ${id} Not Existed`,
       });
     }
 
@@ -51,9 +51,7 @@ exports.deleteUser = async (req, res) => {
 
     res.send({
             status: "success",
-            data: {
-                id,
-            },
+            message: `User with id ${id} deleted`,
         });
   } catch (err) {
     console.log(err);
