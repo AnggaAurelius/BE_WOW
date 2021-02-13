@@ -2,7 +2,7 @@ const { User, Transaction } = require("../../models");
 
 exports.getTransactions = async (req, res) => {
     try{
-        const transaction = await Transaction.findAll({
+        const transactions = await Transaction.findAll({
             include: {
                 as: "users",
                 model: User,
@@ -18,7 +18,7 @@ exports.getTransactions = async (req, res) => {
         res.send({
             status: "success",
             data: {
-                transaction,
+                transactions,
             },
         });
     } catch (err){

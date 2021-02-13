@@ -9,7 +9,7 @@ const {
 } = require("../controllers/addTransaction");
 
 const { 
-    register, login
+    register, login, checkAuth
 } = require("../controllers/auth");
 
 const {getUsers, 
@@ -39,6 +39,7 @@ router.delete("/book/:id", authenticated, isAdmin, deletebook);
 // auth
 router.post("/register", register);
 router.post("/login", login);
+router.get("/check-auth", authenticated, checkAuth);
 
 // transaction
 router.get("/transactions", getTransactions);
