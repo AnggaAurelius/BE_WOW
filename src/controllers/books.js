@@ -71,6 +71,37 @@ exports.addBook = async (req, res) => {
   }
 };
 
+exports.addBookWithImage = async (req, res) => {
+  const { files } = req;
+
+  const { title, publicationDate, pages, author, isbn, about } = req.body;
+
+  try {
+    const book = await Book.create({
+      title,
+      publicationDate,
+      pages,
+      author,
+      isbn,
+      about,
+      thumbnail: files.thumbnail[0].filename,
+      epubFile: files.epubFile[0].filename,
+    });
+
+    res.send({
+      message: "Posts Successfully Created",
+      data: {
+        book,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
+};
+
 exports.editBook = async (req, res) => {
   try {
     const { id } = req.params;

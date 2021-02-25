@@ -112,6 +112,7 @@ exports.login = async (req, res) => {
                 user: {
                     email,
                     fullName: user.fullName,
+                    role: user.role,
                     token, 
                 },
             },
@@ -130,6 +131,9 @@ exports.checkAuth = async (req, res) => {
       where: {
         id: req.user.id,
       },
+      attributes: {
+            exclude:[ "password","createdAt","updatedAt","role"],
+            }
     });
 
     res.send({

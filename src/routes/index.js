@@ -3,31 +3,41 @@ const router = express.Router();
 const { authenticated } = require("../middlewares/auth");
 const { isAdmin } = require("../middlewares/checkRole");
 const { uploadFile } = require("../middlewares/upload");
+const { uploadBook } = require("../middlewares/uploadBook");
 
-const { 
-    addTransaction
-} = require("../controllers/addTransaction");
+const { addTransaction } = require("../controllers/addTransaction");
 
-const { 
-    register, login, checkAuth
-} = require("../controllers/auth");
+const { register, login, checkAuth } = require("../controllers/auth");
+const { getList, addList } = require("../controllers/bookUsers");
 
-const {getUsers, 
-    deleteUser
+const {
+  getUsers,
+  deleteUser,
+  getUser,
+  editUser,
+  editPic,
 } = require("../controllers/users");
 
-const {getBooks,
-    getBooksById,
-    addBook,
-    editBook,
-    deletebook
+const {
+  getBooks,
+  getBooksById,
+  addBook,
+  editBook,
+  deletebook,
+  addBookWithImage,
 } = require("../controllers/books");
 
-const { 
-    getTransactions, editTransaction, getTransactionsById
+const {
+  getTransactions,
+  editTransaction,
+  getTransactionsById,
 } = require("../controllers/transactions");
 
+// user
 router.get("/users", getUsers);
+router.get("/user", authenticated, getUser);
+router.patch("/edit-user", authenticated, editUser);
+router.patch("/edit-pic", uploadFile("imageFile"), authenticated, editPic);
 router.delete("/user/:id", deleteUser);
 
 router.get("/books", getBooks);
@@ -35,6 +45,11 @@ router.get("/book/:id", getBooksById);
 router.post("/book", authenticated, isAdmin, addBook);
 router.patch("/book/:id", authenticated, isAdmin, editBook);
 router.delete("/book/:id", authenticated, isAdmin, deletebook);
+router.post(
+  "/upload-book",
+  uploadBook("thumbnail", "epubFile"),
+  addBookWithImage
+);
 
 // auth
 router.post("/register", register);
@@ -45,6 +60,14 @@ router.get("/check-auth", authenticated, checkAuth);
 router.get("/transactions", getTransactions);
 router.get("/transaction/:id", getTransactionsById);
 router.patch("/transaction/:id", authenticated, isAdmin, editTransaction);
-router.post("/addTransaction", uploadFile("imageFile", "videoFile"), authenticated, addTransaction);
+router.post(
+  "/addTransaction",
+  uploadFile("imageFile", "videoFile"),
+  authenticated,
+  addTransaction
+);
 
-module.exports = router; 
+router.get("/mylist", authenticated, getList);
+router.post("/addlist/:id", authenticated, addList);
+
+module.exports = router;
