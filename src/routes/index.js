@@ -62,7 +62,7 @@ router.get("/transactions", getTransactions);
 router.get("/transaction/:id", getTransactionsById);
 router.patch("/transaction/:id", authenticated, isAdmin, editTransaction);
 router.post(
-  "/addTransaction",
+  "/add-transaction",
   uploadFiles("thumbnail"),
   authenticated,
   addTransaction
