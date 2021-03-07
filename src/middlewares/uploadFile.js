@@ -22,8 +22,8 @@ exports.uploadFiles = (imageFile, bookFile) => {
         return {
           folder: "epub",
           resource_type: "raw",
-          allowedFormats: "epub",
-          format: "epub",
+          // allowedFormats: "epub",
+          // format: "epub",
         };
       } else if (
         file.fieldname === "thumbnail" ||
