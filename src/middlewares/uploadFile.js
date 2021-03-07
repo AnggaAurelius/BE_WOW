@@ -15,14 +15,14 @@ exports.uploadFiles = (imageFile, bookFile) => {
     params: async (req, file) => {
       // console.log("file dari cloudinary storage", file);
       // cek file apa yang diupload user
-      if (file.fieldname === "epubFIle") {
+      if (file.fieldname === "epubFile") {
         // simpan file hasil upload ke folder windowofworld dari clodynary
         // karna file yang diupload berbentuk epub maka tambahkan param dengan type raw
         // dan hanya mengizikan jenis file type epub dan saat diupload beri ext .epub
         return {
           folder: "epub",
           resource_type: "raw",
-          allowedFormats: ["epub"],
+          allowedFormats: "epub",
           format: "epub",
         };
       } else if (
