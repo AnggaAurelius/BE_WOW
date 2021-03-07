@@ -4,7 +4,7 @@ exports.getList = async (req, res) => {
   try {
     const user = await BookUser.findAll({
       where: {
-        id: req.user.id,
+        userId: req.user.id,
       },
       include: {
         model: Book,
