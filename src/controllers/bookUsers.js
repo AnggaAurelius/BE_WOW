@@ -2,7 +2,7 @@ const { User, Book, BookUser } = require("../../models");
 
 exports.getList = async (req, res) => {
   try {
-    const user = await User.findOne({
+    const user = await BookUser.findAll({
       where: {
         id: req.user.id,
       },
@@ -24,7 +24,7 @@ exports.getList = async (req, res) => {
       status: "success",
       //   message: "Books Successfully Retrieved",
       data: {
-        books: user.Books,
+        user,
       },
     });
   } catch (err) {
