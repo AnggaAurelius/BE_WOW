@@ -1,8 +1,8 @@
-const { Book } = require("../../models");
+const { Book, BookUser } = require("../../models");
 
 exports.getBooks = async (req, res) => {
   try {
-    const books = await Book.findAll();
+    const books = await BookUser.findAll();
 
     res.send({
       status: "success",
