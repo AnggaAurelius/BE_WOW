@@ -21,8 +21,8 @@ exports.uploadFiles = (imageFile, bookFile) => {
         // dan hanya mengizikan jenis file type epub dan saat diupload beri ext .epub
         return {
           folder: "epub",
-          resource_type: "raw",
-          // allowedFormats: "epub",
+          // resource_type: "raw",
+          allowedFormats: ["epub"],
           // format: "epub",
         };
       } else if (
