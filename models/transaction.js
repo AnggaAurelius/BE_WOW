@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: DataTypes.INTEGER,
       transferProof: DataTypes.STRING,
-      remainingActive: DataTypes.INTEGER,
+      remainingactive: DataTypes.INTEGER,
       userStatus: DataTypes.STRING,
       paymentStatus: DataTypes.STRING,
     },
