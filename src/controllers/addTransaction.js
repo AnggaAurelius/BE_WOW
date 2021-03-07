@@ -3,13 +3,13 @@ const { User, Transaction } = require("../../models");
 exports.addTransaction = async (req, res) => {
   try {
     const newTransaction = await Transaction.create({
-        userId: req.user.id,
-        transferProof: req.files.imageFile[0].filename,
-        remainingActive: "30/Hari",
-        userStatus: "active",
-        paymentStatus: "Pending",
+      userId: req.user.id,
+      transferProof: req.files.thumbnail[0].path,
+      remainingActive: "30/Hari",
+      userStatus: "active",
+      paymentStatus: "Pending",
     });
-     
+
     const transaction = await Transaction.findOne({
       where: {
         transferProof: newTransaction.transferProof,
@@ -18,23 +18,23 @@ exports.addTransaction = async (req, res) => {
         as: "users",
         model: User,
         attributes: {
-            exclude:[ "email","password","createdAt","updatedAt"],
-            }
+          exclude: ["email", "password", "createdAt", "updatedAt"],
         },
-        attributes: {
-            exclude:[ "userId","createdAt","updatedAt"],
-            },
+      },
+      attributes: {
+        exclude: ["userId", "createdAt", "updatedAt"],
+      },
     });
     res.send({
       data: {
-        transaction:{
-            id: transaction.id,
-            user: transaction.users,
-            transferProof: transaction.transferProof,
-            remainingActive: transaction.remainingActive,
-            userStatus: transaction.userStatus,
-            paymentStatus: transaction.paymentStatus,
-        }
+        transaction: {
+          id: transaction.id,
+          user: transaction.users,
+          transferProof: transaction.transferProof,
+          remainingActive: transaction.remainingActive,
+          userStatus: transaction.userStatus,
+          paymentStatus: transaction.paymentStatus,
+        },
       },
     });
   } catch (err) {
@@ -43,4 +43,4 @@ exports.addTransaction = async (req, res) => {
       message: "Server Error",
     });
   }
-}; 
+};
