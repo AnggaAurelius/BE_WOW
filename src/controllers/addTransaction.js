@@ -5,7 +5,7 @@ exports.addTransaction = async (req, res) => {
     const newTransaction = await Transaction.create({
       userId: req.user.id,
       transferProof: req.files.thumbnail[0].path,
-      remainingactive: 30,
+      remainingActive: "30/hari",
       userStatus: "active",
       paymentStatus: "Pending",
     });

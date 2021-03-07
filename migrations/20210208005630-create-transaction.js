@@ -20,8 +20,8 @@ module.exports = {
       transferProof: {
         type: Sequelize.STRING,
       },
-      remainingactive: {
-        type: Sequelize.INTEGER,
+      remainingActive: {
+        type: Sequelize.STRING,
       },
       userStatus: {
         type: Sequelize.STRING,
