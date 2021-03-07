@@ -1,23 +1,21 @@
 const { Book } = require("../../models");
 
-
 exports.getBooks = async (req, res) => {
-    try{
-        const books = await Book.findAll();
-        
-        res.send({
-            status: "success",
-            data: {
-                books,
-            },
-        });
-    } catch (err){
-        console.log(err);
-        res.status(500).send({
-            message: "Server Error",
-        })
+  try {
+    const books = await Book.findAll();
 
-    }
+    res.send({
+      status: "success",
+      data: {
+        books,
+      },
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      message: "Server Error",
+    });
+  }
 };
 
 exports.getBooksById = async (req, res) => {
@@ -26,8 +24,8 @@ exports.getBooksById = async (req, res) => {
 
     const book = await Book.findOne({
       attributes: {
-                exclude: ["createdAt","updatedAt"],
-                },
+        exclude: ["createdAt", "updatedAt"],
+      },
       where: {
         id,
       },
@@ -84,8 +82,8 @@ exports.addBookWithImage = async (req, res) => {
       author,
       isbn,
       about,
-      thumbnail: files.thumbnail[0].filename,
-      epubFile: files.epubFile[0].filename,
+      thumbnail: files.thumbnail[0].path,
+      epubFile: files.epubFile[0].path,
     });
 
     res.send({
@@ -167,8 +165,8 @@ exports.deletebook = async (req, res) => {
     });
 
     res.send({
-       status: "success",
-       message: `Book with id ${id} deleted`,
+      status: "success",
+      message: `Book with id ${id} deleted`,
     });
   } catch (err) {
     console.log(err);
