@@ -2,7 +2,7 @@ const { User, Book, BookUser } = require("../../models");
 
 exports.getList = async (req, res) => {
   try {
-    const user = await Book.findAll({
+    const user = await BookUser.findAll({
       // where: {
       //   userId: req.user.id,
       // },
