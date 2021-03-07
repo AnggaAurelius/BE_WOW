@@ -41,6 +41,7 @@ router.patch("/edit-user", authenticated, editUser);
 router.patch("/edit-pic", uploadFiles("thumbnail"), authenticated, editPic);
 router.delete("/user/:id", deleteUser);
 
+// Book
 router.get("/books", getBooks);
 router.get("/book/:id", getBooksById);
 router.post("/book", authenticated, isAdmin, addBook);

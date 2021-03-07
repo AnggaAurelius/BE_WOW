@@ -50,11 +50,11 @@ exports.uploadFiles = (imageFile, bookFile) => {
     }
 
     if (file.fieldname === bookFile) {
-      if (!file.originalname.match(/\.(pdf|PDF)$/)) {
+      if (!file.originalname.match(/\.(epub|EPUB)$/)) {
         req.fileValidationError = {
-          message: "Only PDF files are allowed!",
+          message: "Only epub files are allowed!",
         };
-        return cb(new Error("Only PDF are allowed!"), false);
+        return cb(new Error("Only epub are allowed!"), false);
       }
     }
 
