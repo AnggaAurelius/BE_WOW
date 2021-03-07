@@ -96,7 +96,7 @@ exports.editPic = async (req, res) => {
       },
     });
     await user.update({
-      avatar: req.files.imageFile[0].filename,
+      avatar: req.files.thumbnail[0].path,
     });
 
     const userUpdated = await User.findOne({
