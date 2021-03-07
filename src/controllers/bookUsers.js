@@ -2,7 +2,7 @@ const { User, Book, BookUser } = require("../../models");
 
 exports.getList = async (req, res) => {
   try {
-    const user = await BookUser.findAll({
+    const user = await Book.findAll({
       // where: {
       //   userId: req.user.id,
       // },
@@ -15,14 +15,13 @@ exports.getList = async (req, res) => {
       //   //   attributes: [],
       //   // },
       // },
-      attributes: {
-        exclude: ["description", "createdAt", "updatedAt"],
-      },
+      // attributes: {
+      //   exclude: ["description", "createdAt", "updatedAt"],
+      // },
     });
 
     res.send({
       status: "success",
-      //   message: "Books Successfully Retrieved",
       data: {
         user,
       },
