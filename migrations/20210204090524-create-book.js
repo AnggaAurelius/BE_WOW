@@ -21,7 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
       },
       isbn: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       about: {
         type: Sequelize.STRING,
