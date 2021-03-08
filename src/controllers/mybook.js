@@ -30,7 +30,7 @@ exports.getList = async (req, res) => {
     res.send({
       status: "success",
       data: {
-        book: user,
+        mybook: user.book,
       },
     });
   } catch (err) {
