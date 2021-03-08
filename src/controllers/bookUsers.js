@@ -1,8 +1,8 @@
-const { User, Book, BookUser } = require("../../models");
+const { User, Book, BookUser, Mybook } = require("../../models");
 
 exports.getList = async (req, res) => {
   try {
-    const user = await User.findAll({
+    const user = await Mybook.findAll({
       where: {
         id: req.user.id,
       },
@@ -38,9 +38,9 @@ exports.addList = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const book = await BookUser.findOne({
+    const book = await Mybook.findOne({
       where: {
-        userId: req.user.id,
+        user: req.user.id,
         bookId: id,
       },
     });
@@ -52,8 +52,8 @@ exports.addList = async (req, res) => {
       });
     }
 
-    await BookUser.create({
-      userId: req.user.id,
+    await Mybook.create({
+      user: req.user.id,
       bookId: id,
     });
 
