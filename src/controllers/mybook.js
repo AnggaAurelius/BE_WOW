@@ -4,7 +4,7 @@ exports.getList = async (req, res) => {
   try {
     const user = await Mybook.findAll({
       where: {
-        id: req.user.id,
+        user: req.user.id,
       },
       include: {
         as: "book",
@@ -47,7 +47,7 @@ exports.addList = async (req, res) => {
     });
 
     if (book) {
-      res.send({
+      return res.send({
         status: "Error",
         message: "You have added this book",
       });
