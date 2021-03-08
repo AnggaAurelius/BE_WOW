@@ -23,7 +23,7 @@ exports.getList = async (req, res) => {
         },
       },
       attributes: {
-        exclude: ["description", "createdAt", "updatedAt"],
+        exclude: ["description", "createdAt", "updatedAt", "bookId", "user"],
       },
     });
 
