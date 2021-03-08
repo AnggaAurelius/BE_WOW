@@ -10,7 +10,16 @@ exports.getList = async (req, res) => {
         as: "book",
         model: Book,
         attributes: {
-          exclude: ["about", "createdAt", "updatedAt", "pages", "isbn", "updatedAt", "publicationDate", "epubFile"],
+          exclude: [
+            "about",
+            "createdAt",
+            "updatedAt",
+            "pages",
+            "isbn",
+            "updatedAt",
+            "publicationDate",
+            "epubFile",
+          ],
         },
       },
       attributes: {
@@ -21,7 +30,7 @@ exports.getList = async (req, res) => {
     res.send({
       status: "success",
       data: {
-        user.book
+        book: user.book,
       },
     });
   } catch (err) {
