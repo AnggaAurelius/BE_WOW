@@ -7,6 +7,7 @@ exports.getList = async (req, res) => {
         id: req.user.id,
       },
       include: {
+        as: "book",
         model: Book,
         attributes: {
           exclude: ["description", "createdAt", "updatedAt"],
@@ -46,7 +47,7 @@ exports.addList = async (req, res) => {
     });
 
     if (book) {
-      res.status(400).send({
+      res.send({
         status: "Error",
         message: "You have added this book",
       });
