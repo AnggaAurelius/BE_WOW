@@ -9,7 +9,7 @@ const { uploadBook } = require("../middlewares/uploadBook");
 const { addTransaction } = require("../controllers/addTransaction");
 
 const { register, login, checkAuth } = require("../controllers/auth");
-const { getList, addList } = require("../controllers/bookUsers");
+const { getList, addList } = require("../controllers/mybook");
 
 const {
   getUsers,

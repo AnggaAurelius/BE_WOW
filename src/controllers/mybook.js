@@ -6,18 +6,18 @@ exports.getList = async (req, res) => {
       where: {
         id: req.user.id,
       },
-      // include: {
-      //   model: Book,
-      //   attributes: {
-      //     exclude: ["description", "createdAt", "updatedAt"],
-      //   },
-      //   // through: {
-      //   //   attributes: [],
-      //   // },
-      // },
-      // attributes: {
-      //   exclude: ["description", "createdAt", "updatedAt"],
-      // },
+      include: {
+        model: Book,
+        attributes: {
+          exclude: ["description", "createdAt", "updatedAt"],
+        },
+        //   // through: {
+        //   //   attributes: [],
+        //   // },
+        // },
+        // attributes: {
+        //   exclude: ["description", "createdAt", "updatedAt"],
+      },
     });
 
     res.send({
