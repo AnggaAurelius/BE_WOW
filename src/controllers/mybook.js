@@ -10,21 +10,18 @@ exports.getList = async (req, res) => {
         as: "book",
         model: Book,
         attributes: {
-          exclude: ["description", "createdAt", "updatedAt"],
+          exclude: ["about", "createdAt", "updatedAt", "pages", "isbn", "updatedAt", "publicationDate", "epubFile"],
         },
-        //   // through: {
-        //   //   attributes: [],
-        //   // },
-        // },
-        // attributes: {
-        //   exclude: ["description", "createdAt", "updatedAt"],
+      },
+      attributes: {
+        exclude: ["description", "createdAt", "updatedAt"],
       },
     });
 
     res.send({
       status: "success",
       data: {
-        user,
+        user.book
       },
     });
   } catch (err) {
@@ -47,7 +44,7 @@ exports.addList = async (req, res) => {
     });
 
     if (book) {
-      return res.send({
+      res.status(400).send({
         status: "Error",
         message: "You have added this book",
       });
