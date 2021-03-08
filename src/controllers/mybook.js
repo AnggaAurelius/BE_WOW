@@ -30,7 +30,7 @@ exports.getList = async (req, res) => {
     res.send({
       status: "success",
       data: {
-        book: user.book,
+        book: user,
       },
     });
   } catch (err) {
@@ -53,20 +53,20 @@ exports.addList = async (req, res) => {
     });
 
     if (book) {
-      res.status(400).send({
+      res.send({
         status: "Error",
         message: "You have added this book",
       });
+    } else {
+      await Mybook.create({
+        user: req.user.id,
+        bookId: id,
+      });
+
+      res.send({
+        status: "success",
+      });
     }
-
-    await Mybook.create({
-      user: req.user.id,
-      bookId: id,
-    });
-
-    res.send({
-      status: "success",
-    });
   } catch (err) {
     console.log(err);
     res.status(500).send({
